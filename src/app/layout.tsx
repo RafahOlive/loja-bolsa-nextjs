@@ -1,22 +1,29 @@
-import type { Metadata } from 'next'
-import { Inter, Roboto_Condensed } from 'next/font/google'
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 
-const inter = Inter({ subsets: ['latin'] })
-const roboto = Roboto_Condensed({subsets: ['latin'], weight: ['300']})
+import "./globals.css";
+import DarkHeader from "./components/darkHeader";
+import LightHeader from "./components/lightHeader";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Bolsas',
-  description: 'Melhores bolsas e acessórios',
-}
+  title: "Bolsas",
+  description: "Melhores bolsas e acessórios",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
-      <body className={roboto.className}>{children}</body>
+      <body className={inter.className}>
+        <DarkHeader />
+        <LightHeader />
+        {children}
+      </body>
     </html>
-  )
+  );
 }
