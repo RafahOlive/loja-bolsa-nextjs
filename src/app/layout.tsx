@@ -5,11 +5,10 @@ import "./globals.css";
 import DarkHeader from "./components/darkHeader";
 import LightHeader from "./components/lightHeader";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
 
 export const metadata: Metadata = {
   title: "Bolsas",
-  description: "Melhores bolsas e acessórios",
 };
 
 export default function RootLayout({
@@ -18,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="pt" className={inter.variable}>
+      <body >
         <DarkHeader />
         <LightHeader />
         {children}
