@@ -4,7 +4,6 @@ import Link from "next/link";
 import { FaMagnifyingGlass, FaCartShopping, FaHeart } from "react-icons/fa6";
 import { HiOutlineUser } from "react-icons/hi";
 import { options } from "../api/auth/[...nextauth]/options";
-import { stringify } from "querystring";
 
 export default async function LightHeader() {
   const session = await getServerSession(options);

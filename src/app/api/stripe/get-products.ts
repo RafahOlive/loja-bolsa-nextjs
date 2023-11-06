@@ -1,4 +1,4 @@
-import { stripe } from "../api/stripe";
+import { stripe } from "./stripe";
 import Stripe from "stripe";
 
 interface productProps {
