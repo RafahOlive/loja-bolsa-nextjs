@@ -1,11 +1,12 @@
 import { stripe } from "./stripe";
 import Stripe from "stripe";
 
-interface productProps {
+export interface productProps {
   id: string;
   name: string;
   imageUrl: string;
   price: string;
+  defaultPriceId?: string;
 }
 
 export const getProducts = async (): Promise<productProps[]> => {
@@ -22,6 +23,7 @@ export const getProducts = async (): Promise<productProps[]> => {
         style: "currency",
         currency: "BRL",
       }).format((price.unit_amount as number) /100),
+      defaultPriceId: price.id,
     };
   });
   return product

@@ -4,7 +4,6 @@ import { getProducts } from "../../api/stripe/get-products";
 
 export default async function Product() {
   const products = await getProducts();
-  console.log(products);
   return (
     <div className="container flex gap-8 mx-auto">
       <div className="h-auto w-48 rounded bg-sky-300 px-5 py-6">Filtro</div>
