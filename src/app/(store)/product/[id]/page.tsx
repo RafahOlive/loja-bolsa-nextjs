@@ -2,7 +2,6 @@ import Image from "next/image";
 import { getProducts, productProps } from "../../../api/stripe/get-products";
 import { z } from "zod";
 import { Line } from "@/app/components/line";
-import axios from "axios";
 import BuyButton from "@/app/components/buyButton";
 
 export default async function ProductPage({
@@ -14,7 +13,6 @@ export default async function ProductPage({
   const id = z.string().parse(params.id);
   const product = gotpProduct.find((product) => product.id === id);
 
-  console.log("Resposta do products", product);
   console.log("Resposta do products", product);
 
   return (

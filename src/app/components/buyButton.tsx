@@ -2,7 +2,6 @@
 
 import axios from "axios";
 import { getProducts } from "../api/stripe/get-products";
-import { z } from "zod";
 
 export default async function BuyButton(){
   let defaultPriceId: string;
