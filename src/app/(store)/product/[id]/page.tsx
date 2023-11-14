@@ -1,6 +1,4 @@
 import Image from "next/image";
-import { getProducts, productProps } from "../../../api/stripe/get-products";
-import { z } from "zod";
 import { Line } from "@/app/components/line";
 import BuyButton from "@/app/components/buyButton";
 
@@ -9,12 +7,14 @@ export default async function ProductPage({
 }: {
   params: { id: string };
 }) {
-  const gotpProduct = await getProducts();
-  const id = z.string().parse(params.id);
-  const product = gotpProduct.find((product) => product.id === id);
+  const request = await fetch(
+    "http://localhost:3000/api/product/" + params.id,
+    {
+      method: "GET",
+    }
+  );
 
-  console.log("Resposta do products", product);
-
+  let product = await request.json();
   return (
     <div className="container flex gap-8 mx-auto">
       <div className="h-screen w-full border-2 border-gray-500 rounded bg-sky-300 flex justify-center items-center">
@@ -25,8 +25,9 @@ export default async function ProductPage({
         <h2>Produto oficial</h2>
         <div>estrelas de avaliação</div>
         <div>Icones redondos de rede social</div>
+        <div>{product.price}</div>
         <Line />
-        <BuyButton />
+        <BuyButton priceId={product.defaultPriceId} />
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ export interface productProps {
   name: string;
   imageUrl: string;
   price: string;
-  defaultPriceId?: string;
+  defaultPriceId?: any;
 }
 
 export const getProducts = async (): Promise<productProps[]> => {
@@ -27,4 +27,19 @@ export const getProducts = async (): Promise<productProps[]> => {
     };
   });
   return product
+};
+
+export const getProduct = async (id: string): Promise<productProps> => {
+  const product = await stripe.products.retrieve(id);
+    const priceId = product.default_price as string;
+    return {
+      id: product.id,
+      name: product.name,
+      imageUrl: product.images[0],
+      price: new Intl.NumberFormat("pr-BR", {
+        style: "currency",
+        currency: "BRL",
+      }).format(0),
+      defaultPriceId: priceId,
+    };
 };

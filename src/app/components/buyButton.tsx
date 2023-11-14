@@ -1,34 +1,24 @@
 "use client";
-
-import axios from "axios";
-import { getProducts } from "../api/stripe/get-products";
-
-export default async function BuyButton(){
-  let defaultPriceId: string;
-  
-  const gotpProduct = await getProducts();
-  const product = gotpProduct.find((product) => {product.defaultPriceId === defaultPriceId});
-
-
+export default function BuyButton({ priceId }: any) {
   async function handleBuyProduct() {
-    try {
-      const response = await axios.post("/api/checkout", {
-        priceId: product?.defaultPriceId,
-      });
-      const { checkoutUrl } = response.data;
-      window.location.href = checkoutUrl;
-    } catch (err) {
-      // Conectar com uma ferramenta de observabilidade (Datado / Sentry)
-      alert("Falha ao redirecinar ao checkout");
-    }
+    const request = await fetch(
+      "http://localhost:3000/api/product/checkout/" + priceId,
+      {
+        method: "POST",
+      }
+    );
+    const response = await request.json();
+    const responseUrl = response.url
+    console.log(responseUrl)
+    window.location.href = responseUrl
   }
 
   return (
     <button
-      onClick={() => handleBuyProduct}
+      onClick={handleBuyProduct}
       className="bg-slate-200 w-full h-12 mt-4 rounded"
     >
-      COMPRAR AGORA
+      Checkout
     </button>
   );
 }
