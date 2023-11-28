@@ -18,7 +18,7 @@ export default function BuyButton({ priceId }: any) {
       onClick={handleBuyProduct}
       className="bg-slate-200 w-full h-12 mt-4 rounded"
     >
-      Checkout
+      Comprar agora
     </button>
   );
 }

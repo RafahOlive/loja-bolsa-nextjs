@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Line } from "@/app/components/line";
 import BuyButton from "@/app/components/buyButton";
+import AddCart from "@/app/components/AddCart";
 
 export default async function ProductPage({
   params,
@@ -28,6 +29,7 @@ export default async function ProductPage({
         <div>{product.price}</div>
         <Line />
         <BuyButton priceId={product.defaultPriceId} />
+        <AddCart />
       </div>
     </div>
   );
